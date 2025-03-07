@@ -4,6 +4,11 @@ import { HangImage } from "./components/HangImage";
 import { letters } from "./helpers/letters";
 
 function App() {
+// Palabra
+  const [word] = useState('COMPUTADORA');
+  // useState nos sirve para decir que hay un cambio.
+  const [hiddenWord] = useState('_ '.repeat(word.length));
+
   // Estamos creando una variable de estado
   const [ attempts, setAttempts] = useState(0);
 
@@ -20,7 +25,7 @@ function App() {
       <HangImage imageNumber = { attempts }/>
 
       {/* Palabra oculta */}
-      <h3>_ _ _ _ _ _ _ _ </h3>
+      <h3>{hiddenWord}</h3>
 
       {/* Contador de intentos */}
       <h3>Intentos: {attempts}</h3>
