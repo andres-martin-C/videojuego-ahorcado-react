@@ -6,7 +6,7 @@ import { getRandomWord } from "./helpers/getRandomWord";
 
 function App() {
   // Palabra
-  const [word] = useState(getRandomWord);
+  const [word, setWord] = useState(getRandomWord);
   // useState nos sirve para decir que hay un cambio.
   const [hiddenWord, setHiddenWord] = useState("_ ".repeat(word.length));
   const [ lose, setLose] = useState(false);
@@ -53,8 +53,15 @@ function App() {
     }
 
     setHiddenWord(hiddenWordArray.join(' '));
-    
   };
+
+  const newGame = () => {
+    setWord(getRandomWord());
+    setHiddenWord("_ ".repeat(word.length));
+    setAttempts(0);
+    setLose(false);
+    setWon(false);
+  }
 
   return (
     <div className="App">
@@ -84,6 +91,12 @@ function App() {
           {letter}
         </button>
       ))}
+      
+      <br /> <br />
+      <button
+      onClick={newGame}>
+        Nuevo juego
+        </button>
     </div>
   );
 }
