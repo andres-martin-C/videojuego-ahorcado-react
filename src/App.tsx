@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { HangImage } from "./components/HangImage";
 import { letters } from "./helpers/letters";
+import { getRandomWord } from "./helpers/getRandomWord";
 
 function App() {
   // Palabra
-  const [word] = useState("COMPUTADORA");
+  const [word] = useState(getRandomWord);
   // useState nos sirve para decir que hay un cambio.
   const [hiddenWord, setHiddenWord] = useState("_ ".repeat(word.length));
   const [ lose, setLose] = useState(false);
@@ -32,6 +33,7 @@ function App() {
   // Creacion de una funcion con flecha
   const checkLetter = (letter: string) => {
     if (lose) return;
+    if (won) return;
 
     if (!word.includes(letter)) {
       setAttempts(Math.min(attempts + 1, 9));
